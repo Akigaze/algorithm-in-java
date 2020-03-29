@@ -40,6 +40,19 @@ public class BubbleSorterTest {
   }
 
   @Test
+  public void test_sort_an_int_array_asc_as_default_3() {
+    BubbleSorter sorter = new BubbleSorter();
+    sorter.setLoggable(true);
+    int[] array = new int[]{36, 34, 25, 28, 21, 20, 19, 14, 11, 11, 9, 8, 8, 5, 4, 3, 1};
+    sorter.bubbleSort(array);
+
+    int[] expected = {1, 3, 4, 5, 8, 8, 9, 11, 11, 14, 19, 20, 21, 25, 28, 34, 36};
+
+    System.out.println(Arrays.toString(array));
+    assertArrayEquals(expected, array);
+  }
+
+  @Test
   public void test_sort_an_int_array_asc_as_default_to_new_array() {
     BubbleSorter sorter = new BubbleSorter();
     int[] array = new int[]{11, 4, 3, 18, 1, 9, 25, 14, 7, 11, 22, 36, 3, 21, 15, 8, 34};

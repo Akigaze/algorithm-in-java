@@ -32,8 +32,8 @@ public class BubbleSorter extends Loggable {
       for (int j = 0; j < array.length - 1 - i; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[j + 1]);
         /*
-          从小到大(正序) a[i] > a[i+1]  => a[i] - a[i+1] > 0  ==>  (a[i] - a[i+1]) > 0
-          从大到小(倒序) a[i] < a[i+1]  => a[i] - a[i+1] < 0  ==> -(a[i] - a[i+1]) > 0
+          从小到大(正序) a[i] > a[i+1]  ==> a[i] - a[i+1] > 0  ==>  (a[i] - a[i+1]) > 0
+          从大到小(倒序) a[i] < a[i+1]  ==> a[i] - a[i+1] < 0  ==> -(a[i] - a[i+1]) > 0
          */
         if ((array[j] - array[j + 1]) * direction.positive > 0) {
           this.log("swap No.%d", ++swapTimes);
@@ -64,8 +64,8 @@ public class BubbleSorter extends Loggable {
       for (int j = 0; j < array.length - 1 - i; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[j + 1]);
         /*
-          从小到大(正序) a[i] > a[i+1]  => a[i] - a[i+1] > 0  ==>  (a[i] - a[i+1]) > 0
-          从大到小(倒序) a[i] < a[i+1]  => a[i] - a[i+1] < 0  ==> -(a[i] - a[i+1]) > 0
+          从小到大(正序) a[i] > a[i+1]  ==> a[i] - a[i+1] > 0  ==>  (a[i] - a[i+1]) > 0
+          从大到小(倒序) a[i] < a[i+1]  ==> a[i] - a[i+1] < 0  ==> -(a[i] - a[i+1]) > 0
           a.compareTo(b) 此处解释为  a - b
          */
         if (array[j].compareTo(array[j + 1]) * direction.positive > 0) {

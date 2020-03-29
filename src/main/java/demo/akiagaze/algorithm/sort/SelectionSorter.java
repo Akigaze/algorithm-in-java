@@ -31,8 +31,8 @@ public class SelectionSorter extends Loggable {
       for (int j = i + 1; j < array.length; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[indexOfExtremeValue]);
         /*
-          从小到大(正序) a[i] < a[indexOfMin]  => a[indexOfMin] - a[i] > 0  ==>  (a[indexOfMin] - a[i]) > 0
-          从大到小(倒序) a[i] > a[indexOfMax]  => a[i] - a[indexOfMax] > 0  ==> -(a[indexOfMax] - a[i]) > 0
+          从小到大(正序) a[i] < a[indexOfMin]  ==> a[indexOfMin] - a[i] > 0  ==>  (a[indexOfMin] - a[i]) > 0
+          从大到小(倒序) a[i] > a[indexOfMax]  ==> a[i] - a[indexOfMax] > 0  ==> -(a[indexOfMax] - a[i]) > 0
          */
         if ((array[indexOfExtremeValue] - array[j]) * direction.positive > 0) {
           indexOfExtremeValue = j;
@@ -61,8 +61,8 @@ public class SelectionSorter extends Loggable {
       for (int j = i + 1; j < array.length; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[indexOfExtremeValue]);
         /*
-          从小到大(正序) a[i] < a[indexOfMin]  => a[indexOfMin] - a[i] > 0  ==>  (a[indexOfMin] - a[i]) > 0
-          从大到小(倒序) a[i] > a[indexOfMax]  => a[i] - a[indexOfMax] > 0  ==> -(a[indexOfMax] - a[i]) > 0
+          从小到大(正序) a[i] < a[indexOfMin]  ==> a[indexOfMin] - a[i] > 0  ==>  (a[indexOfMin] - a[i]) > 0
+          从大到小(倒序) a[i] > a[indexOfMax]  ==> a[i] - a[indexOfMax] > 0  ==> -(a[indexOfMax] - a[i]) > 0
           此处 a.compareTo(b) 解释为 a - b
          */
         if (array[indexOfExtremeValue].compareTo(array[j]) * direction.positive > 0) {
