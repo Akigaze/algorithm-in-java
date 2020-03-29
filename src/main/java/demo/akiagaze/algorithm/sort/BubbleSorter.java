@@ -7,6 +7,7 @@ import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
+// 时间复杂度: O(n^2)/O(n)
 public class BubbleSorter extends Loggable {
 
   public void bubbleSort(int[] array) {
@@ -27,7 +28,7 @@ public class BubbleSorter extends Loggable {
     // 最大比较次数 (length - 1)^2
     for (int i = 0; i < array.length - 1; i++) {
       boolean swapped = false;
-      // "- i" 可以实现比较次数减少 1+2+...+(length - 2) 次
+      // "- i" 可以实现比较次数减少 1+2+...+(length - 2) 次, 即总比较次数为: n(n-1)/2
       for (int j = 0; j < array.length - 1 - i; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[j + 1]);
         /*
@@ -59,7 +60,7 @@ public class BubbleSorter extends Loggable {
     // 最大比较次数 (length - 1)^2
     for (int i = 0; i < array.length - 1; i++) {
       boolean swapped = false;
-      // "- i" 可以实现比较次数减少 1+2+...+(length - 2) 次
+      // "- i" 可以实现比较次数减少 1+2+...+(length - 2) 次 : (n-1)(n-2)/2
       for (int j = 0; j < array.length - 1 - i; j++) {
         this.log("compare No.%d: %d vs. %d", ++compareTimes, array[j], array[j + 1]);
         /*

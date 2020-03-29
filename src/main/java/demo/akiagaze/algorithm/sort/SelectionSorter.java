@@ -7,6 +7,7 @@ import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
+// 时间复杂度: O(n^2)/O(n^2)
 public class SelectionSorter extends Loggable {
 
   public void selectionSort(int[] array) {
@@ -24,7 +25,7 @@ public class SelectionSorter extends Loggable {
     this.log("length of array: %d", array.length);
     int compareTimes = 0;
     int swapTimes = 0;
-    // 稳定比较次数，1+2+...+(length-1), 即两两比较的次数
+    // 稳定比较次数，1+2+...+(length-1), 即两两比较的次数: n(n-1)/2
     for (int i = 0; i < array.length - 1; i++) {
       int indexOfExtremeValue = i;
       for (int j = i + 1; j < array.length; j++) {
