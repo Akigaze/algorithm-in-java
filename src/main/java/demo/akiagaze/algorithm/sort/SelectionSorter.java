@@ -1,14 +1,13 @@
 package demo.akiagaze.algorithm.sort;
 
 import demo.akiagaze.algorithm.constant.Sort.Direction;
+import demo.akiagaze.algorithm.util.log.Loggable;
 
-import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
-public class SelectionSorter {
-  private boolean loggable;
+public class SelectionSorter extends Loggable {
 
   public void selectionSort(int[] array) {
     this.selectionSort(array, Direction.ASC);
@@ -93,13 +92,4 @@ public class SelectionSorter {
     this.selectionSort(list, Direction.ASC);
   }
 
-  public void setLoggable(boolean loggable) {
-    this.loggable = loggable;
-  }
-
-  private void log(String template, Object... args) {
-    if (loggable) {
-      System.out.println(String.format(template, args));
-    }
-  }
 }

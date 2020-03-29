@@ -1,14 +1,13 @@
 package demo.akiagaze.algorithm.sort;
 
 import demo.akiagaze.algorithm.constant.Sort.Direction;
+import demo.akiagaze.algorithm.util.log.Loggable;
 
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
-public class BubbleSorter {
-
-  private boolean loggable = false;
+public class BubbleSorter extends Loggable {
 
   public void bubbleSort(int[] array) {
     this.bubbleSort(array, Direction.ASC);
@@ -105,13 +104,4 @@ public class BubbleSorter {
     this.bubbleSort(collection, Direction.ASC);
   }
 
-  public void setLoggable(boolean loggable) {
-    this.loggable = loggable;
-  }
-
-  private void log(String template, Object... args) {
-    if (loggable) {
-      System.out.println(String.format(template, args));
-    }
-  }
 }
