@@ -13,8 +13,8 @@ public class InsertionSorter extends Loggable {
   public void insertionSort(int[] array) {
 //    this.insertionSort(array, Direction.ASC);
     this.log("length of array: %d", array.length);
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     // 从第二个元素开始，依次与它之前的元素比较，找到第一个跟它一样大，或者比它小的元素，在它后面把这个元素插入
     // 所以对于每个元素，都认为它前面的元素都已经是排序完毕的了
     // 完全逆序时，元素比较的最大次数为 1+2+...+(length-1), 即: n(n-1)/2
@@ -40,12 +40,14 @@ public class InsertionSorter extends Loggable {
         this.log("swap No.%d", swapTimes);
       }
     }
+
+    System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
   public void insertionSort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     // 从第二个元素开始，依次与它之前的元素比较，找到第一个跟它一样大，或者比它小的元素，在它后面把这个元素插入
     // 所以对于每个元素，都认为它前面的元素都已经是排序完毕的了
     for (int i = 1; i < array.length; i++) {
@@ -81,8 +83,8 @@ public class InsertionSorter extends Loggable {
 
   public <T extends Comparable<T>> void insertionSort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     // 从第二个元素开始，依次与它之前的元素比较，找到第一个跟它一样大，或者比它小的元素，在它后面把这个元素插入
     // 所以对于每个元素，都认为它前面的元素都已经是排序完毕的了
     for (int i = 1; i < array.length; i++) {

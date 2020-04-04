@@ -52,6 +52,31 @@ public class InsertionSorterTest {
   }
 
   @Test
+  public void test_sort_a_small_int_array_asc_as_default() {
+    InsertionSorter sorter = new InsertionSorter();
+    sorter.setLoggable(true);
+    int[] array = new int[]{2, 7, 4, 1, 5};
+    sorter.insertionSort(array);
+
+    int[] expected = {1, 2, 4, 5, 7};
+
+    System.out.println(Arrays.toString(array));
+    assertArrayEquals(expected, array);
+  }
+
+  @Test
+  public void test_sort_a_big_int_array_asc_as_default() {
+    InsertionSorter sorter = new InsertionSorter();
+    int[] array = DataFactory.getBigArray();
+    long start = System.currentTimeMillis();
+    sorter.insertionSort(array);
+    System.out.println(String.format("cost: [%d] ms", System.currentTimeMillis() - start));
+
+    System.out.println(Arrays.toString(array));
+    assertArrayEquals(DataFactory.EXPECTED_BIG_ARRAY, array);
+  }
+
+  @Test
   public void test_sort_an_int_array_with_direction_desc() {
     InsertionSorter sorter = new InsertionSorter();
 

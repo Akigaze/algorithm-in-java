@@ -23,8 +23,8 @@ public class SelectionSorter extends Loggable {
 
   public void selectionSort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     // 稳定比较次数，1+2+...+(length-1), 即两两比较的次数: n(n-1)/2
     for (int i = 0; i < array.length - 1; i++) {
       int indexOfExtremeValue = i;
@@ -45,6 +45,8 @@ public class SelectionSorter extends Loggable {
         array[i] = min;
       }
     }
+
+    System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
   public <T extends Comparable<T>> void selectionSort(T[] array) {
@@ -53,8 +55,8 @@ public class SelectionSorter extends Loggable {
 
   public <T extends Comparable<T>> void selectionSort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     // 稳定比较次数，1+2+...+(length-1), 即两两比较的次数
     for (int i = 0; i < array.length - 1; i++) {
       int indexOfExtremeValue = i;

@@ -53,6 +53,31 @@ public class SelectionSorterTest {
   }
 
   @Test
+  public void test_sort_a_small_int_array_asc_as_default() {
+    SelectionSorter sorter = new SelectionSorter();
+    sorter.setLoggable(true);
+    int[] array = new int[]{2, 7, 4, 1, 5};
+    sorter.selectionSort(array);
+
+    int[] expected = {1, 2, 4, 5, 7};
+
+    System.out.println(Arrays.toString(array));
+    assertArrayEquals(expected, array);
+  }
+
+  @Test
+  public void test_sort_a_big_int_array_asc_as_default() {
+    SelectionSorter sorter = new SelectionSorter();
+    int[] array = DataFactory.getBigArray();
+    long start = System.currentTimeMillis();
+    sorter.selectionSort(array);
+    System.out.println(String.format("cost: [%d] ms", System.currentTimeMillis() - start));
+
+    System.out.println(Arrays.toString(array));
+    assertArrayEquals(DataFactory.EXPECTED_BIG_ARRAY, array);
+  }
+
+  @Test
   public void test_sort_an_int_array_asc_as_default_to_new_array() {
     SelectionSorter sorter = new SelectionSorter();
     int[] array = new int[]{11, 4, 3, 18, 1, 9, 25, 14, 7, 11, 22, 36, 3, 21, 15, 8, 34};

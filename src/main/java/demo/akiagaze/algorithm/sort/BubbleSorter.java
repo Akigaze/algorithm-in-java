@@ -22,8 +22,8 @@ public class BubbleSorter extends Loggable {
   }
 
   public void bubbleSort(int[] array, Direction direction) {
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     this.log("length of array: %d", array.length);
     // 最大比较次数 (length - 1)^2
     for (int i = 0; i < array.length - 1; i++) {
@@ -51,11 +51,13 @@ public class BubbleSorter extends Loggable {
         break;
       }
     }
+
+    System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
   public <T extends Comparable<T>> void bubbleSort(T[] array, Direction direction) {
-    int compareTimes = 0;
-    int swapTimes = 0;
+    long compareTimes = 0;
+    long swapTimes = 0;
     this.log("length of array: %d", array.length);
     // 最大比较次数 (length - 1)^2
     for (int i = 0; i < array.length - 1; i++) {
