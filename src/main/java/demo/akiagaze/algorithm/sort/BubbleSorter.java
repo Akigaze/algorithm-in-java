@@ -8,20 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 // 时间复杂度: O(n^2)/O(n)
-public class BubbleSorter extends Loggable {
+public class BubbleSorter extends Loggable implements Sorter {
 
-  public void bubbleSort(int[] array) {
-    this.bubbleSort(array, Direction.ASC);
+  public void sort(int[] array) {
+    this.sort(array, Direction.ASC);
   }
 
-  public int[] bubbleSortToNewArray(int[] array) {
-    int[] result = new int[array.length];
-    System.arraycopy(array, 0, result, 0, array.length);
-    bubbleSort(result);
-    return result;
-  }
-
-  public void bubbleSort(int[] array, Direction direction) {
+  public void sort(int[] array, Direction direction) {
     long compareTimes = 0;
     long swapTimes = 0;
     this.log("length of array: %d", array.length);
@@ -55,7 +48,7 @@ public class BubbleSorter extends Loggable {
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
-  public <T extends Comparable<T>> void bubbleSort(T[] array, Direction direction) {
+  public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     long compareTimes = 0;
     long swapTimes = 0;
     this.log("length of array: %d", array.length);
@@ -88,23 +81,23 @@ public class BubbleSorter extends Loggable {
     }
   }
 
-  public <T extends Comparable<T>> void bubbleSort(T[] array) {
-    this.bubbleSort(array, Direction.ASC);
+  public <T extends Comparable<T>> void sort(T[] array) {
+    this.sort(array, Direction.ASC);
   }
 
-  public <T extends Comparable<T>> void bubbleSort(List<T> list, Direction direction) {
+  public <T extends Comparable<T>> void sort(List<T> list, Direction direction) {
     if (list.isEmpty()) {
       return;
     }
     T[] array = list.toArray((T[]) Array.newInstance(list.get(0).getClass(), list.size()));
-    bubbleSort(array, direction);
+    sort(array, direction);
 
     list.clear();
     Collections.addAll(list, array);
   }
 
-  public <T extends Comparable<T>> void bubbleSort(List<T> collection) {
-    this.bubbleSort(collection, Direction.ASC);
+  public <T extends Comparable<T>> void sort(List<T> collection) {
+    this.sort(collection, Direction.ASC);
   }
 
 }

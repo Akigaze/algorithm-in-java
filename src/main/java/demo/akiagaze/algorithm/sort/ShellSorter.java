@@ -8,27 +8,20 @@ import java.util.Collections;
 import java.util.List;
 
 // 时间复杂度: O(n^1.3)
-public class ShellSorter extends Loggable {
+public class ShellSorter extends Loggable implements Sorter {
 
-  private int incrementFactor = 2;
+  private final int incrementFactor;
 
   public ShellSorter() {
+    this(2);
   }
 
   public ShellSorter(int incrementFactor) {
     this.incrementFactor = incrementFactor;
   }
 
-  public int getIncrementFactor() {
-    return incrementFactor;
-  }
-
-  public void setIncrementFactor(int incrementFactor) {
-    this.incrementFactor = incrementFactor;
-  }
-
-  public void shellSort(int[] array) {
-//    this.shellSort(array, Direction.ASC);
+  public void sort(int[] array) {
+//    this.sort(array, Direction.ASC);
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
     long swapTimes = 0;
@@ -75,7 +68,7 @@ public class ShellSorter extends Loggable {
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
-  public void shellSort(int[] array, Direction direction) {
+  public void sort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
     long swapTimes = 0;
@@ -127,11 +120,11 @@ public class ShellSorter extends Loggable {
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
-  public <T extends Comparable<T>> void shellSort(T[] array) {
-    this.shellSort(array, Direction.ASC);
+  public <T extends Comparable<T>> void sort(T[] array) {
+    this.sort(array, Direction.ASC);
   }
 
-  public <T extends Comparable<T>> void shellSort(T[] array, Direction direction) {
+  public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
     long swapTimes = 0;
@@ -184,19 +177,19 @@ public class ShellSorter extends Loggable {
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
-  public <T extends Comparable<T>> void shellSort(List<T> list, Direction direction) {
+  public <T extends Comparable<T>> void sort(List<T> list, Direction direction) {
     if (list.isEmpty()) {
       return;
     }
     T[] array = list.toArray((T[]) Array.newInstance(list.get(0).getClass(), list.size()));
-    this.shellSort(array, direction);
+    this.sort(array, direction);
 
     list.clear();
     Collections.addAll(list, array);
   }
 
-  public <T extends Comparable<T>> void shellSort(List<T> list) {
-    this.shellSort(list, Direction.ASC);
+  public <T extends Comparable<T>> void sort(List<T> list) {
+    this.sort(list, Direction.ASC);
   }
 
 }

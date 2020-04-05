@@ -8,20 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 // 时间复杂度: O(n^2)/O(n^2)
-public class SelectionSorter extends Loggable {
+public class SelectionSorter extends Loggable implements Sorter {
 
-  public void selectionSort(int[] array) {
-    this.selectionSort(array, Direction.ASC);
+  public void sort(int[] array) {
+    this.sort(array, Direction.ASC);
   }
 
-  public int[] selectionSortToNewArray(int[] array) {
-    int[] result = new int[array.length];
-    System.arraycopy(array, 0, result, 0, array.length);
-    this.selectionSort(result);
-    return result;
-  }
-
-  public void selectionSort(int[] array, Direction direction) {
+  public void sort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
     long swapTimes = 0;
@@ -49,11 +42,11 @@ public class SelectionSorter extends Loggable {
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
 
-  public <T extends Comparable<T>> void selectionSort(T[] array) {
-    this.selectionSort(array, Direction.ASC);
+  public <T extends Comparable<T>> void sort(T[] array) {
+    this.sort(array, Direction.ASC);
   }
 
-  public <T extends Comparable<T>> void selectionSort(T[] array, Direction direction) {
+  public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
     long swapTimes = 0;
@@ -80,19 +73,19 @@ public class SelectionSorter extends Loggable {
     }
   }
 
-  public <T extends Comparable<T>> void selectionSort(List<T> list, Direction direction) {
+  public <T extends Comparable<T>> void sort(List<T> list, Direction direction) {
     if (list.isEmpty()) {
       return;
     }
     T[] array = list.toArray((T[]) Array.newInstance(list.get(0).getClass(), list.size()));
-    this.selectionSort(array, direction);
+    this.sort(array, direction);
 
     list.clear();
     Collections.addAll(list, array);
   }
 
-  public <T extends Comparable<T>> void selectionSort(List<T> list) {
-    this.selectionSort(list, Direction.ASC);
+  public <T extends Comparable<T>> void sort(List<T> list) {
+    this.sort(list, Direction.ASC);
   }
 
 }

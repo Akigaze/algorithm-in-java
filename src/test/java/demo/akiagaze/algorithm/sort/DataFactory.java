@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class DataFactory {
-  public static final int BIG_ARRAY_LENGTH = 100000;
+  public static final int BIG_ARRAY_LENGTH = 10000;
 
   private static final int[] BIG_ARRAY = new int[BIG_ARRAY_LENGTH];
 
