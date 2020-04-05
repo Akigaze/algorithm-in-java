@@ -114,20 +114,4 @@ public class InsertionSorter extends Loggable implements Sorter {
       }
     }
   }
-
-  public <T extends Comparable<T>> void sort(List<T> list, Direction direction) {
-    if (list.isEmpty()) {
-      return;
-    }
-    T[] array = list.toArray((T[]) Array.newInstance(list.get(0).getClass(), list.size()));
-    this.sort(array, direction);
-
-    list.clear();
-    Collections.addAll(list, array);
-  }
-
-  public <T extends Comparable<T>> void sort(List<T> list) {
-    this.sort(list, Direction.ASC);
-  }
-
 }
