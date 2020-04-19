@@ -5,9 +5,9 @@ import demo.akiagaze.algorithm.util.assertion.Assert;
 import java.time.Instant;
 import java.util.Properties;
 
-import static demo.akiagaze.algorithm.snowflake.SimpleSnowFlake.SnowFlakeProperty.*;
+import static demo.akiagaze.algorithm.snowflake.AbstractSnowFlake.SnowFlakeProperty.*;
 
-public class SimpleSnowFlake implements SnowFlake {
+public class SimpleSnowFlake extends AbstractSnowFlake {
 
   private final int SEQUENCE_BIT = 12;
   private final int WORKER_ID_SHIFT_BITS = SEQUENCE_BIT;
@@ -22,16 +22,14 @@ public class SimpleSnowFlake implements SnowFlake {
   private long sequence;
   private long sequenceOffset;
 
-  private Properties props;
-
   public SimpleSnowFlake() {
     this("2020-01-01T00:00:00Z");
   }
 
   public SimpleSnowFlake(String epochTime) {
+    super(new Properties());
     Instant epochInstant = Instant.parse(epochTime);
     EPOCH = epochInstant.toEpochMilli();
-    props = new Properties();
   }
 
   @Override
@@ -90,42 +88,18 @@ public class SimpleSnowFlake implements SnowFlake {
     }
   }
 
-  public void setProps(Properties props) {
-    props.forEach((k, v) -> this.props.put(k, v));
-  }
-
   private long getMaxSequenceVibrationOffset() {
-    long maxVibrationOffset = Long.parseLong(props.getProperty(MAX_SEQUENCE_VIBRATION_OFFSET.key, MAX_SEQUENCE_VIBRATION_OFFSET.defaultValue));
+    long maxVibrationOffset = Long.parseLong(this.getProperty(MAX_SEQUENCE_VIBRATION_OFFSET));
     return Math.min(maxVibrationOffset, SEQUENCE_MASK);
   }
 
   private long getMaxTimeToleranceDifference() {
-    return Long.parseLong(props.getProperty(MAX_TIME_TOLERANCE_DIFFERENCE.key, MAX_TIME_TOLERANCE_DIFFERENCE.defaultValue));
+    return Long.parseLong(this.getProperty(MAX_TIME_TOLERANCE_DIFFERENCE));
   }
 
 
   private long getWorkerId() {
-    long workerId = Long.parseLong(props.getProperty(WORKER_ID.key, WORKER_ID.defaultValue));
+    long workerId = Long.parseLong(this.getProperty(WORKER_ID));
     return Math.min(workerId, MAX_WORKER_ID);
-  }
-
-  public static class WaitToleranceTimeDifferenceException extends RuntimeException {
-    public WaitToleranceTimeDifferenceException(String message, Throwable cause) {
-      super(message, cause);
-    }
-  }
-
-  public enum SnowFlakeProperty{
-    MAX_SEQUENCE_VIBRATION_OFFSET("max.sequence.vibration.offset", 63),
-    MAX_TIME_TOLERANCE_DIFFERENCE("max.time.tolerance.difference", 10),
-    WORKER_ID("worker.id", 0);
-
-    public final String key;
-    public final String defaultValue;
-
-    SnowFlakeProperty(String key, Object defaultValue) {
-      this.key = key;
-      this.defaultValue = String.valueOf(defaultValue);
-    }
   }
 }
