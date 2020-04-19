@@ -9,11 +9,11 @@ import java.util.List;
 
 // 时间复杂度: O(n^2)/O(n^2)
 public class SelectionSorter extends Loggable implements Sorter {
-
+  @Override
   public void sort(int[] array) {
     this.sort(array, Direction.ASC);
   }
-
+  @Override
   public void sort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
@@ -41,11 +41,11 @@ public class SelectionSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array) {
     this.sort(array, Direction.ASC);
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;

@@ -10,7 +10,7 @@ import java.util.List;
 
 // 时间复杂度: O(nlog2n)
 public class MergeSorter extends Loggable implements Sorter {
-
+  @Override
   public void sort(int[] array) {
     this.sort(array, Direction.ASC);
 //    this.mergeSort(array, 0 , array.length - 1);

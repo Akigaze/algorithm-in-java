@@ -9,11 +9,11 @@ import java.util.List;
 
 // 时间复杂度: O(n^2)/O(n)
 public class BubbleSorter extends Loggable implements Sorter {
-
+  @Override
   public void sort(int[] array) {
     this.sort(array, Direction.ASC);
   }
-
+  @Override
   public void sort(int[] array, Direction direction) {
     long compareTimes = 0;
     long swapTimes = 0;
@@ -47,7 +47,7 @@ public class BubbleSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     long compareTimes = 0;
     long swapTimes = 0;
@@ -80,7 +80,7 @@ public class BubbleSorter extends Loggable implements Sorter {
       }
     }
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array) {
     this.sort(array, Direction.ASC);
   }

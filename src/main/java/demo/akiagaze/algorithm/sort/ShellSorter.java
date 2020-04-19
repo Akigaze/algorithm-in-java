@@ -19,7 +19,7 @@ public class ShellSorter extends Loggable implements Sorter {
   public ShellSorter(int incrementFactor) {
     this.incrementFactor = incrementFactor;
   }
-
+  @Override
   public void sort(int[] array) {
 //    this.sort(array, Direction.ASC);
     this.log("length of array: %d", array.length);
@@ -67,7 +67,7 @@ public class ShellSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
-
+  @Override
   public void sort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
@@ -119,11 +119,11 @@ public class ShellSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array) {
     this.sort(array, Direction.ASC);
   }
-
+  @Override
   public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);
     long compareTimes = 0;
