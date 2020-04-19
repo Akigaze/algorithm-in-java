@@ -11,23 +11,41 @@ public class QuickSorter extends Loggable implements Sorter {
   @Override
   public void sort(int[] array, Direction direction) {
     this.log("[Sort] length of array: %d", array.length);
-    new QSorter(direction).doSort(array, 0, array.length - 1);
+//    new PivotAtFirstSorter(direction).doSort(array, 0, array.length - 1);
+    new PivotAtMiddleSorter(direction).doSort(array, 0, array.length - 1);
   }
 
   @Override
   public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("[Sort] length of array: %d", array.length);
-    new QSorter(direction).doSort(array, 0, array.length - 1);
+//    new PivotAtFirstSorter(direction).doSort(array, 0, array.length - 1);
+    new PivotAtMiddleSorter(direction).doSort(array, 0, array.length - 1);
   }
 
-  private static class QSorter{
-    private final Direction direction;
+  private abstract class PivotSorter {
+    protected final Direction direction;
 
-    public QSorter(Direction direction) {
+    public PivotSorter(Direction direction) {
       this.direction = direction;
     }
 
-    private void doSort(int[] array, int left, int right) {
+    protected abstract void doSort(int[] array, int left, int right);
+
+    protected abstract int partition(int[] array, int left, int right);
+
+    protected abstract <T extends Comparable<T>> void doSort(T[] array, int left, int right);
+
+    protected abstract <T extends Comparable<T>> int partition(T[] array, int left, int right);
+  }
+
+  private class PivotAtFirstSorter extends PivotSorter {
+
+    public PivotAtFirstSorter(Direction direction) {
+      super(direction);
+    }
+
+    @Override
+    protected void doSort(int[] array, int left, int right) {
       if (left < right) {
         int pivot = this.partition(array, left, right);
         this.doSort(array, left, pivot - 1);
@@ -35,24 +53,26 @@ public class QuickSorter extends Loggable implements Sorter {
       }
     }
 
-    private int partition(int[] array, int left, int right) {
-      int pivotIndex = left;
-      int nextIndexOfMin = pivotIndex + 1;
+    @Override
+    protected int partition(int[] array, int left, int right) {
+      int pivot = array[left];
+      int nextIndexOfMin = left + 1;
 
       for (int i = nextIndexOfMin; i <= right; i++) {
         // 从小到大：array[i] < pivot  =>  array[i] - pivot < 0
         // 从大到小：array[i] > pivot  =>  -(array[i] - pivot) < 0
-        if ((array[i] - array[pivotIndex]) * direction.positive < 0) {
+        if ((array[i] - pivot) * direction.positive < 0) {
           swap(array, i, nextIndexOfMin);
           nextIndexOfMin++;
         }
       }
-      swap(array, pivotIndex, nextIndexOfMin - 1);
+      swap(array, left, nextIndexOfMin - 1);
 
       return nextIndexOfMin - 1;
     }
 
-    private <T extends Comparable<T>> void doSort(T[] array, int left, int right) {
+    @Override
+    protected <T extends Comparable<T>> void doSort(T[] array, int left, int right) {
       if (left < right) {
         int pivot = this.partition(array, left, right);
         this.doSort(array, left, pivot - 1);
@@ -60,22 +80,94 @@ public class QuickSorter extends Loggable implements Sorter {
       }
     }
 
-    private <T extends Comparable<T>> int partition(T[] array, int left, int right) {
-      int pivotIndex = left;
-      int nextIndexOfMin = pivotIndex + 1;
+    @Override
+    protected <T extends Comparable<T>> int partition(T[] array, int left, int right) {
+      T pivot = array[left];
+      int nextIndexOfMin = left + 1;
 
       for (int i = nextIndexOfMin; i <= right; i++) {
         // 从小到大：array[i] < pivot  =>  array[i] - pivot < 0
         // 从大到小：array[i] > pivot  =>  -(array[i] - pivot) < 0
         // a.compareTo(b)  =>  a - b
-        if ((array[i].compareTo(array[pivotIndex])) * direction.positive < 0) {
+        if ((array[i].compareTo(pivot)) * direction.positive < 0) {
           swap(array, i, nextIndexOfMin);
           nextIndexOfMin++;
         }
       }
-      swap(array, pivotIndex, nextIndexOfMin - 1);
+      swap(array, left, nextIndexOfMin - 1);
 
       return nextIndexOfMin - 1;
+    }
+  }
+
+  private class PivotAtMiddleSorter extends PivotSorter {
+
+    public PivotAtMiddleSorter(Direction direction) {
+      super(direction);
+    }
+
+    @Override
+    protected void doSort(int[] array, int left, int right) {
+      if (left < right) {
+        int pivot = this.partition(array, left, right);
+        this.doSort(array, left, pivot - 1);
+        this.doSort(array, pivot, right);
+      }
+    }
+
+    @Override
+    protected int partition(int[] array, int left, int right) {
+      int mid = (left + right) >> 1;
+      int pivot = array[mid];
+
+      while (left <= right) {
+        // 从小到大：array[left] < pivot  =>  array[left] - pivot < 0
+        // 从大到小：array[left] > pivot  =>  -(array[left] - pivot) < 0
+        while ((array[left] - pivot) * direction.positive < 0) {
+          left++;
+        }
+        // 从小到大：array[right] > pivot  =>  array[right] - pivot > 0
+        // 从大到小：array[right] < pivot  =>  -(array[right] - pivot) > 0
+        while ((array[right] - pivot) * direction.positive > 0) {
+          right--;
+        }
+        if (left <= right) {
+          swap(array, left, right);
+          left++;
+          right--;
+        }
+      }
+      return left;
+    }
+
+    @Override
+    protected <T extends Comparable<T>> void doSort(T[] array, int left, int right) {
+      if (left < right) {
+        int pivot = this.partition(array, left, right);
+        this.doSort(array, left, pivot - 1);
+        this.doSort(array, pivot, right);
+      }
+    }
+
+    @Override
+    protected <T extends Comparable<T>> int partition(T[] array, int left, int right) {
+      int mid = (left + right) >> 1;
+      T pivot = array[mid];
+
+      while (left <= right) {
+        while ((array[left].compareTo(pivot)) * direction.positive < 0) {
+          left++;
+        }
+        while ((array[right].compareTo(pivot)) * direction.positive > 0) {
+          right--;
+        }
+        if (left <= right) {
+          swap(array, left, right);
+          left++;
+          right--;
+        }
+      }
+      return left;
     }
   }
 }
