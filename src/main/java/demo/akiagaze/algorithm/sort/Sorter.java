@@ -7,11 +7,15 @@ import java.util.Collections;
 import java.util.List;
 
 public interface Sorter {
-  void sort(int[] array);
+  default void sort(int[] array) {
+    this.sort(array, Sort.Direction.ASC);
+  }
 
   void sort(int[] array, Sort.Direction direction);
 
-  <T extends Comparable<T>> void sort(T[] array);
+  default <T extends Comparable<T>> void sort(T[] array) {
+    this.sort(array, Sort.Direction.ASC);
+  }
 
   <T extends Comparable<T>> void sort(T[] array, Sort.Direction direction);
 
