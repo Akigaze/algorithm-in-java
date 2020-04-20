@@ -48,7 +48,6 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
     MAX_WORKER_ID = (1 << WORKER_ID_BIT) - 1;
   }
 
-
   @Override
   public synchronized long generateKey() {
     long currentTime = this.getCurrentTime();
@@ -57,7 +56,9 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
     }
     if (lastTime == currentTime) {
       if (0 == (sequence = (sequence + 1) & SEQUENCE_MASK)) {
-        currentTime = this.waitUntilNextTime(currentTime);
+        if(!this.isSequenceFullUtilizationEnabled()){
+          currentTime = this.waitUntilNextTime(currentTime);
+        }
       }
     } else {
       this.vibrateSequenceOffset();
@@ -119,10 +120,13 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
     return Long.parseLong(this.getProperty(MAX_TIME_TOLERANCE_DIFFERENCE));
   }
 
-
   private long getWorkerId() {
     long workerId = Long.parseLong(this.getProperty(WORKER_ID));
     return Math.min(workerId, MAX_WORKER_ID);
+  }
+
+  private boolean isSequenceFullUtilizationEnabled() {
+    return Boolean.parseBoolean(this.getProperty(SEQUENCE_FULL_UTILIZATION_ENABLED));
   }
 
   public enum TimeGrading {

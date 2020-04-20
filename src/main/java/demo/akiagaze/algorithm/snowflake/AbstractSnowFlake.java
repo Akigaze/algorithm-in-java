@@ -34,7 +34,8 @@ public abstract class AbstractSnowFlake implements SnowFlake {
   public enum SnowFlakeProperty {
     MAX_SEQUENCE_VIBRATION_OFFSET("max.sequence.vibration.offset", 63),
     MAX_TIME_TOLERANCE_DIFFERENCE("max.time.tolerance.difference", 10),
-    WORKER_ID("worker.id", 0);
+    WORKER_ID("worker.id", 0),
+    SEQUENCE_FULL_UTILIZATION_ENABLED("sequence.full.utilization.enabled", false);
 
     public final String key;
     public final String defaultValue;

@@ -10,7 +10,7 @@ public class SimpleSnowFlakeTest {
   public void test_generateKey_1() throws InterruptedException {
     SnowFlake snowFlake = new SimpleSnowFlake(Instant.now().toString());
     Properties props = new Properties();
-    props.put(SimpleSnowFlake.SnowFlakeProperty.MAX_SEQUENCE_VIBRATION_OFFSET.key, "1");
+    props.put(SimpleSnowFlake.SnowFlakeProperty.MAX_SEQUENCE_VIBRATION_OFFSET.key, "3");
     snowFlake.setProps(props);
     Thread[] threadPool = new Thread[10];
     for (int n = 0; n < threadPool.length; n++) {
@@ -18,7 +18,7 @@ public class SimpleSnowFlakeTest {
       threadPool[n] = new Thread("T_" + n) {
         @Override
         public void run() {
-          for (int i = 0; i < 30; i++) {
+          for (int i = 0; i < 100; i++) {
             long key = snowFlake.generateKey();
 //            System.out.println(String.format("[%s] %d", this.getName(), key));
           }
