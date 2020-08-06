@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SteerableSnowFlakeTest {
   @Test
   public void test_generateKey_1() throws InterruptedException {
-    SnowFlake snowFlake = new SteerableSnowFlake(Instant.now().toString(), 4, SteerableSnowFlake.TimeGrading.second);
+    SnowFlake snowFlake = new SteerableSnowFlake(Instant.now().toString(), 4, TimeUnit.second);
     Properties props = new Properties();
     props.put(SimpleSnowFlake.SnowFlakeProperty.MAX_SEQUENCE_VIBRATION_OFFSET.key, "10");
     snowFlake.setProps(props);
