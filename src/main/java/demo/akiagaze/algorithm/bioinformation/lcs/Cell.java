@@ -6,6 +6,8 @@ class Cell {
   private final int row;
   private final int col;
 
+  private boolean traced;
+
   public Cell(int row, int col) {
     this.row = row;
     this.col = col;
@@ -33,5 +35,13 @@ class Cell {
 
   public int getCol() {
     return col;
+  }
+
+  public boolean isTraced() {
+    return traced;
+  }
+
+  public void setTraced(boolean traced) {
+    this.traced = traced;
   }
 }

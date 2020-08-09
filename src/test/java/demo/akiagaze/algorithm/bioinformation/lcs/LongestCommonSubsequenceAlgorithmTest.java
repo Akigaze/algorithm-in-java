@@ -10,10 +10,10 @@ public class LongestCommonSubsequenceAlgorithmTest {
     String s1 = "AGCATTGCGA";
     String s2 = "ACCACTCCAG";
 
-    LongestCommonSubsequenceAlgorithm algorithm = new LongestCommonSubsequenceAlgorithm(s1, s2);
-    String lsc = algorithm.lcs();
+    LCSAlgorithm algorithm = new LongestCommonSubsequenceAlgorithm(s1, s2);
+    String lcs = algorithm.lcs();
 
-    Assert.assertThat(lsc, CoreMatchers.anyOf(CoreMatchers.is("ACATCG"), CoreMatchers.is("ACATCA")));
+    Assert.assertThat(lcs, CoreMatchers.anyOf(CoreMatchers.is("ACATCG"), CoreMatchers.is("ACATCA")));
   }
 
   @Test
@@ -21,9 +21,20 @@ public class LongestCommonSubsequenceAlgorithmTest {
     String s1 = "AGACGAGACCCAGTAGCCCTAGGGAGCGTGTGCAAAGTGTAGATCTAGCTAGCTAAAAA";
     String s2 = "ACCACTCCAGCGATGGGGCTTTATCTAGCTTAGGAGGATGTCA";
 
-    LongestCommonSubsequenceAlgorithm algorithm = new LongestCommonSubsequenceAlgorithm(s1, s2);
-    String lsc = algorithm.lcs();
+    LCSAlgorithm algorithm = new LongestCommonSubsequenceAlgorithm(s1, s2);
+    String lcs = algorithm.lcs();
 
-    System.out.println(lsc);
+    System.out.println(lcs);
+  }
+
+  @Test
+  public void should_calculate_lsc_3() {
+    String s1 = "ATATGCTAGCTAGCCGTTAAAGTCGATCGATCGCCCGGAAATAGCTGAGCTTTTAGAGAGAGAGAGACGCGATGTGTGATCGCTGCTAGCTAGCTAGGGGA";
+    String s2 = s1.substring(10);
+
+    LCSAlgorithm algorithm = new LongestCommonSubsequenceAlgorithm(s1, s2);
+    String lcs = algorithm.lcs();
+
+    Assert.assertThat(lcs, CoreMatchers.is(s2));
   }
 }

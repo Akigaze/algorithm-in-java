@@ -30,7 +30,6 @@ public class LongestCommonSubsequenceAlgorithm implements LCSAlgorithm {
   }
 
   private void fillInScoreMatrix(Cell[][] scoreMatrix) {
-
     for (int row = 1; row < scoreMatrix.length; row++) {
       for (int col = 1; col < scoreMatrix[row].length; col++) {
         Cell currentCell = scoreMatrix[row][col];
@@ -85,8 +84,10 @@ public class LongestCommonSubsequenceAlgorithm implements LCSAlgorithm {
       if (currentCell.getRow() - prevCell.getRow() == 1 && currentCell.getCol() - prevCell.getCol() == 1 && currentCell.getScore() - prevCell.getScore() == 1) {
         lcsChars[i--] = sequence1.charAt(currentCell.getRow() - 1);
       }
+      currentCell.setTraced(true);
       currentCell = prevCell;
     }
+    new ScoreMatrixPrinter(scoreMatrix, sequence1, sequence2).print();
     return new String(lcsChars);
   }
 
