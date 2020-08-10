@@ -104,7 +104,7 @@ public class NeedlemanWunschSequenceAlignmentAlgorithm implements SequenceAlignm
   }
 
   private String[] getTraceBack(Cell[][] scoreMatrix) {
-    Cell currentCell = scoreMatrix[scoreMatrix.length - 1][scoreMatrix[0].length - 1];
+    Cell currentCell = this.getTraceBackStartingCell(scoreMatrix);
     int len = Math.max(sequence1.length(), sequence2.length());
     char[] sequence1Chars = new char[len];
     char[] sequence2Chars = new char[len];
@@ -130,6 +130,10 @@ public class NeedlemanWunschSequenceAlignmentAlgorithm implements SequenceAlignm
 
 
     return new String[]{new String(sequence1Chars), new String(sequence2Chars)};
+  }
+
+  private Cell getTraceBackStartingCell(Cell[][] scoreMatrix) {
+    return scoreMatrix[scoreMatrix.length - 1][scoreMatrix[0].length - 1];
   }
 
   private boolean traceBackIsNotDone(Cell cell) {
