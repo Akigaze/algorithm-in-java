@@ -27,7 +27,7 @@ public class NeedlemanWunschSequenceAlignmentAlgorithm implements SequenceAlignm
   }
 
   private Cell[][] initializeScoreMatrix() {
-    Cell[][] scoreMatrix = new Cell[sequence1.length()][sequence2.length()];
+    Cell[][] scoreMatrix = new Cell[sequence1.length() + 1][sequence2.length() + 1];
 
     for (int row = 0; row < scoreMatrix.length; row++) {
       for (int col = 0; col < scoreMatrix[row].length; col++) {
@@ -122,9 +122,9 @@ public class NeedlemanWunschSequenceAlignmentAlgorithm implements SequenceAlignm
       if (currentCell.getCol() - prevCell.getCol() == 1) {
         sequence2Chars[i] = sequence2.charAt(currentCell.getCol() - 1);
       } else {
-        sequence1Chars[i] = SPACE;
+        sequence2Chars[i] = SPACE;
       }
-      i++;
+      i--;
       currentCell = prevCell;
     }
 
