@@ -3,10 +3,6 @@ package demo.akiagaze.algorithm.sort;
 import demo.akiagaze.algorithm.constant.Sort.Direction;
 import demo.akiagaze.algorithm.util.log.Loggable;
 
-import java.lang.reflect.Array;
-import java.util.Collections;
-import java.util.List;
-
 // 时间复杂度: O(n^1.3)
 public class ShellSorter extends Loggable implements Sorter {
 
@@ -19,6 +15,7 @@ public class ShellSorter extends Loggable implements Sorter {
   public ShellSorter(int incrementFactor) {
     this.incrementFactor = incrementFactor;
   }
+
   @Override
   public void sort(int[] array) {
 //    this.sort(array, Direction.ASC);
@@ -67,6 +64,7 @@ public class ShellSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
+
   @Override
   public void sort(int[] array, Direction direction) {
     this.log("length of array: %d", array.length);
@@ -119,10 +117,12 @@ public class ShellSorter extends Loggable implements Sorter {
 
     System.out.println(String.format("total compare times: %d, total swap times: %d", compareTimes, swapTimes));
   }
+
   @Override
   public <T extends Comparable<T>> void sort(T[] array) {
     this.sort(array, Direction.ASC);
   }
+
   @Override
   public <T extends Comparable<T>> void sort(T[] array, Direction direction) {
     this.log("length of array: %d", array.length);

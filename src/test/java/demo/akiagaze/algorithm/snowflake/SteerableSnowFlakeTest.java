@@ -5,8 +5,6 @@ import org.junit.Test;
 import java.time.Instant;
 import java.util.Properties;
 
-import static org.junit.Assert.*;
-
 public class SteerableSnowFlakeTest {
   @Test
   public void test_generateKey_1() throws InterruptedException {

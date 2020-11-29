@@ -56,7 +56,7 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
     }
     if (lastTime == currentTime) {
       if (0 == (sequence = (sequence + 1) & SEQUENCE_MASK)) {
-        if(!this.isSequenceFullUtilizationEnabled()){
+        if (!this.isSequenceFullUtilizationEnabled()) {
           currentTime = this.waitUntilNextTime(currentTime);
         }
       }

@@ -5,8 +5,6 @@ import demo.akiagaze.algorithm.util.log.Loggable;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 // 时间复杂度: O(nlog2n)
 public class MergeSorter extends Loggable implements Sorter {
@@ -47,6 +45,7 @@ public class MergeSorter extends Loggable implements Sorter {
     // 通过递归将数组拆分连续的小的分组，对每个组进行排序，相邻的组再做排序
     return this.merge(mergeSort(left, direction), mergeSort(right, direction), direction);
   }
+
   // 有返回值算法
   private int[] merge(int[] left, int[] right, Direction direction) {
     int[] result = new int[left.length + right.length];
@@ -128,6 +127,7 @@ public class MergeSorter extends Loggable implements Sorter {
     this.mergeSort(array, middle + 1, rIndex);
     this.merge(array, lIndex, middle, rIndex);
   }
+
   // 无返回值算法
   private void merge(int[] array, int lIndex, int middle, int rIndex) {
     int[] result = new int[rIndex - lIndex + 1];

@@ -29,7 +29,7 @@ public class SimpleSnowFlakeTest {
     for (Thread thread : threadPool) {
       thread.start();
     }
-    for (Thread thread: threadPool){
+    for (Thread thread : threadPool) {
       thread.join();
     }
   }

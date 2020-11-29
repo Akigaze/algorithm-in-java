@@ -1,0 +1,25 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_size = 2
+indent_style = space
+insert_final_newline = false
+max_line_length = 160
+tab_width = 2
+
+[*.java]
+indent_size = 2
+tab_width = 2
+
+[{*.cjs,*.js}]
+indent_size = 2
+tab_width = 2
+
+[{*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.stylelintrc,bowerrc,jest.config}]
+indent_size = 2
+tab_width = 2
+
+[{*.yaml,*.yml}]
+indent_size = 2

@@ -4,7 +4,6 @@ import demo.akiagaze.algorithm.constant.Sort;
 import demo.akiagaze.algorithm.util.log.Loggable;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +16,7 @@ public class ShellSorterTest {
   @Test
   public void test_sort_an_int_array_asc_as_default_1() {
     Sorter sorter = new ShellSorter();
-    ((Loggable)sorter).setLoggable(true);
+    ((Loggable) sorter).setLoggable(true);
     int[] array = new int[]{21, 4, 34, 8, 11, 9, 5, 14, 25, 11, 20, 36, 3, 1, 19, 8, 24};
     int[] expected = {1, 3, 4, 5, 8, 8, 9, 11, 11, 14, 19, 20, 21, 24, 25, 34, 36};
 
@@ -30,7 +29,7 @@ public class ShellSorterTest {
   @Test
   public void test_sort_an_int_array_asc_as_default_2() {
     Sorter sorter = new ShellSorter();
-    ((Loggable)sorter).setLoggable(true);
+    ((Loggable) sorter).setLoggable(true);
     int[] array = new int[]{1, 3, 4, 5, 8, 8, 9, 11, 11, 14, 19, 20, 21, 28, 25, 34, 36};
     sorter.sort(array);
 
@@ -43,7 +42,7 @@ public class ShellSorterTest {
   @Test
   public void test_sort_an_int_array_asc_as_default_3() {
     Sorter sorter = new ShellSorter();
-    ((Loggable)sorter).setLoggable(true);
+    ((Loggable) sorter).setLoggable(true);
     int[] array = new int[]{36, 34, 25, 28, 21, 20, 19, 14, 11, 11, 9, 8, 8, 5, 4, 3, 1};
     sorter.sort(array);
 
@@ -56,7 +55,7 @@ public class ShellSorterTest {
   @Test
   public void test_sort_a_small_int_array_asc_as_default() {
     Sorter sorter = new ShellSorter();
-    ((Loggable)sorter).setLoggable(true);
+    ((Loggable) sorter).setLoggable(true);
     int[] array = new int[]{2, 7, 4, 1, 5};
     sorter.sort(array);
 
