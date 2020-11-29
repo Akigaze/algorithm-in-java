@@ -66,7 +66,7 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
     }
     lastTime = currentTime;
     long key = ((currentTime - EPOCH) << TIMESTAMP_SHIFT_BITS) | (this.getWorkerId() << WORKER_ID_SHIFT_BITS) | sequence;
-    System.out.println(String.format("[Generate key] thread %s, key: %d, time: %d, sequence: %d, offset: %d", Thread.currentThread().getName(), key, currentTime, sequence, sequenceOffset));
+    System.out.printf("[Generate key] thread %s, key: %d, time: %d, sequence: %d, offset: %d%n", Thread.currentThread().getName(), key, currentTime, sequence, sequenceOffset);
     return key;
   }
 
@@ -84,7 +84,7 @@ public class SteerableSnowFlake extends AbstractSnowFlake {
   private long waitUntilNextTime(final long lastTime) {
     long currentTime = this.getCurrentTime();
     while (currentTime <= lastTime) {
-      System.out.println(String.format("[Wait] wait until next time, current time: %d", lastTime));
+      System.out.printf("[Wait] wait until next time, current time: %d%n", lastTime);
       currentTime = this.getCurrentTime();
     }
     return currentTime;
